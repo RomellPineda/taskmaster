@@ -1,9 +1,10 @@
-* Task App
+# Task App
 
-** Description
+## Description
 The classic task manager app in Java.
 
-** Screen Shots
+## Screen Shots
 
-** Daily Change Log
+
+## Daily Change Log
 Created index, add task, and all tasks page
