@@ -24,7 +24,7 @@
         android:layout_marginLeft="64dp"
         android:layout_marginEnd="64dp"
         android:layout_marginRight="64dp"
-        android:text="Cupcake ipsum dolor sit amet marshmallow sugar plum gummies sugar plum. Cotton candy wafer topping jujubes. Jelly pastry donut lemon drops pastry. Pastry gingerbread bonbon cookie sugar plum bonbon dessert gummies. Dessert lollipop topping pie icing chocolate. Jelly chocolate cake muffin. Cake donut lemon drops. Sweet cookie jujubes cupcake caramels halvah. Danish chocolate cake candy tart dragée jelly-o pastry candy canes. Pie tiramisu topping chupa chups candy halvah tootsie roll. Jujubes gummi bears bonbon cotton candy icing muffin. Topping biscuit cake."
+        android:text="Cupcake ipsum dolor sit amet marshmallow sugar plum gummies sugar plum. Cotton candy wafer topping jujubes. Jelly pastry donut lemon drops pastry. Pastry gingerbread bonbon cookie sugar plum bonbon dessert gummies. Dessert lollipop topping pie icing chocolate. Jelly chocolate cake muffin. Cake donut lemon drops. Sweet cookie jujubes cupcake caramels halvah. Danish chocolate cake candy tart."
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

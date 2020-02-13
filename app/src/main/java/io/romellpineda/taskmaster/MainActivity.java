@@ -54,21 +54,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final RadioGroup taskGroup = findViewById(R.id.taskGroup);
-        taskGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                String waffle = ((RadioButton)findViewById(taskGroup.getCheckedRadioButtonId())).getText().toString();
-
-                SharedPreferences sP = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                SharedPreferences.Editor editor = sP.edit();
-                editor.putString("task", waffle);
-                editor.apply();
-
-                Intent goToDetailPage = new Intent(MainActivity.this, Detail.class);
-                MainActivity.this.startActivity(goToDetailPage);
-            }
-        });
+//        Archive pre-Recycler
+//        final RadioGroup taskGroup = findViewById(R.id.taskGroup);
+//        taskGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                String waffle = ((RadioButton)findViewById(taskGroup.getCheckedRadioButtonId())).getText().toString();
+//
+//                SharedPreferences sP = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//                SharedPreferences.Editor editor = sP.edit();
+//                editor.putString("task", waffle);
+//                editor.apply();
+//
+//                Intent goToDetailPage = new Intent(MainActivity.this, Detail.class);
+//                MainActivity.this.startActivity(goToDetailPage);
+//            }
+//        });
     }
 }

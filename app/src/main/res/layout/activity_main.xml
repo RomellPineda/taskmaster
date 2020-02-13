@@ -25,33 +25,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <RadioGroup
-            android:id="@+id/taskGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="325dp"
+            android:layout_height="372dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <RadioButton
-                android:id="@+id/gymSelect"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="gym" />
-
-            <RadioButton
-                android:id="@+id/groceriesSelect"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="groceries" />
-
-            <RadioButton
-                android:id="@+id/laundrySelect"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="laundry" />
-        </RadioGroup>
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
