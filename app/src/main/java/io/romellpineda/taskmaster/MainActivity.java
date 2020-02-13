@@ -10,7 +10,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +20,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        TextView appTitle = findViewById(R.id.textView);
+        SharedPreferences sP = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String user = sP.getString("username", "My Tasks");
+        appTitle.setText(user);
 
         Button addTaskPage = findViewById(R.id.button);
         addTaskPage.setOnClickListener(new View.OnClickListener() {
@@ -37,22 +45,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        RadioGroup taskGroup = findViewById(R.id.taskGroup);
+        Button settingsPage =  findViewById(R.id.settingsButton);
+        settingsPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToSetting = new Intent(MainActivity.this, Setting.class);
+                MainActivity.this.startActivity(goToSetting);
+            }
+        });
+
+        final RadioGroup taskGroup = findViewById(R.id.taskGroup);
         taskGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
-//            EditText nameInput = findViewById(R.id.username);
-//            String username = nameInput.getText().toString();
-
 
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                String waffle = "joe";
-
-                Log.v("groupo", group.toString());
+                String waffle = ((RadioButton)findViewById(taskGroup.getCheckedRadioButtonId())).getText().toString();
 
                 SharedPreferences sP = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = sP.edit();
-                editor.putString("username", waffle);
+                editor.putString("task", waffle);
+                editor.apply();
 
                 Intent goToDetailPage = new Intent(MainActivity.this, Detail.class);
                 MainActivity.this.startActivity(goToDetailPage);
