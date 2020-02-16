@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import io.romellpineda.taskmaster.dummy.DummyContent;
 import io.romellpineda.taskmaster.dummy.DummyContent.DummyItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -71,7 +72,13 @@ public class TaskFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-//            recyclerView.setAdapter(new MyTaskRecyclerViewAdapter(Task.ITEMS, mListener));
+            List<Task> listOfTasks = new ArrayList<>();
+            listOfTasks.add(new Task("move gym membership", "switch gym membership state", "incomplete"));
+            listOfTasks.add(new Task("groceries", "buy groceries", "incomplete"));
+            listOfTasks.add(new Task("laundry", "do the laundry", "incomplete"));
+//            recyclerView.setAdapter(new MyTaskRecyclerViewAdapter(listOfTasks, mListener));
+            recyclerView.setAdapter(new MyTaskRecyclerViewAdapter(listOfTasks, null));
+
         }
         return view;
     }
@@ -82,9 +89,9 @@ public class TaskFragment extends Fragment {
         super.onAttach(context);
         if (context instanceof OnListFragmentInteractionListener) {
             mListener = (OnListFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
+//        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnListFragmentInteractionListener");
         }
     }
 
