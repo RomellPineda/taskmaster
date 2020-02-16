@@ -25,13 +25,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="325dp"
-            android:layout_height="372dp"
+        <fragment
+            android:id="@+id/fragment7"
+            android:name="io.romellpineda.taskmaster.TaskFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout="@layout/fragment_task_list" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
