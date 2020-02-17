@@ -16,9 +16,9 @@ public class Detail extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
 
-        TextView taskTitle = findViewById(R.id.textView3);
-        SharedPreferences sP = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String selectedTask = sP.getString("task", "default task: play video games");
-        taskTitle.setText(selectedTask);
+//        TextView taskTitle = findViewById(R.id.textView3);
+//        SharedPreferences sP = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//        String selectedTask = sP.getString("task", "default task: play video games");
+//        taskTitle.setText(selectedTask);
     }
 }
