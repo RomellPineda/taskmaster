@@ -2,6 +2,10 @@ package io.romellpineda.taskmaster;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +16,7 @@ import io.romellpineda.taskmaster.TaskFragment.OnListFragmentInteractionListener
 import io.romellpineda.taskmaster.dummy.DummyContent.DummyItem;
 
 import java.util.List;
+import java.util.prefs.PreferenceChangeEvent;
 
 import static android.content.ContentValues.TAG;
 
@@ -22,7 +27,7 @@ import static android.content.ContentValues.TAG;
  */
 public class MyTaskRecyclerViewAdapter extends RecyclerView.Adapter<MyTaskRecyclerViewAdapter.ViewHolder> {
 
-    static final String TAG = "////";
+    static final String TAG = "//// ";
     private final List<Task> mValues;
     private final OnListFragmentInteractionListener mListener;
 
@@ -48,12 +53,11 @@ public class MyTaskRecyclerViewAdapter extends RecyclerView.Adapter<MyTaskRecycl
         holder.myTitleView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "thingy clicked");
-//                if (null != mListener) {
-//                     Notify the active callbacks interface (the activity, if the
-//                     fragment is attached to one) that an item has been selected.
-//                    mListener.onListFragmentInteraction(holder.mItem);
-//                }
+                Log.i(TAG, "fragment clicked");
+                Context context = v.getContext();
+                Intent goToDetail = new Intent(context, Detail.class);
+                goToDetail.putExtra("task", holder.myTitleView.getText().toString());
+                context.startActivity(goToDetail);
             }
         });
     }
