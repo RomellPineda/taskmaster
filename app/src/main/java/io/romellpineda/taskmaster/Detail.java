@@ -16,9 +16,14 @@ public class Detail extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
 
+//        pre-refactor
 //        TextView taskTitle = findViewById(R.id.textView3);
 //        SharedPreferences sP = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 //        String selectedTask = sP.getString("task", "default task: play video games");
 //        taskTitle.setText(selectedTask);
+
+        String clickedTaskTitle = getIntent().getStringExtra("task");
+        TextView taskTitle = findViewById(R.id.textView3);
+        taskTitle.setText(clickedTaskTitle);
     }
 }
