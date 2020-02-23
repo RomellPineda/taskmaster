@@ -29,7 +29,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         taskDb = Room.databaseBuilder(getApplicationContext(), TaskDatabase.class, "task").allowMainThreadQueries().build();
-        this.tasksFromDatabase = new ArrayList<Task>();
+        this.tasksFromDatabase = new ArrayList<>();
+
+        System.out.println("tasksFromDatabase = " + tasksFromDatabase.toString());
+//        System.out.println("tasksFromDatabase = " + tasksFromDatabase.get(0));
+
 
         TextView appTitle = findViewById(R.id.textView);
         SharedPreferences sP = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
