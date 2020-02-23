@@ -1,6 +1,14 @@
 package io.romellpineda.taskmaster;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 class Task {
+
+    @PrimaryKey(autoGenerate = true)
+    long id;
+
     private String title;
     private String body;
     private String state;
