@@ -1,6 +1,7 @@
 package io.romellpineda.taskmaster;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,12 +15,24 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    List<Task> tasksFromDatabase;
+    TaskDatabase taskDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        taskDb = Room.databaseBuilder(getApplicationContext(), TaskDatabase.class, "task").allowMainThreadQueries().build();
+        this.tasksFromDatabase = taskDb.taskDao().getAll();
+
+        System.out.println("tasksFromDatabase = " + tasksFromDatabase.toString());
+//        System.out.println("tasksFromDatabase = " + tasksFromDatabase.get(0));
 
 
         TextView appTitle = findViewById(R.id.textView);
