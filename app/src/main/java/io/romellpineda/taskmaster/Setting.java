@@ -42,14 +42,14 @@ public class Setting extends AppCompatActivity {
         sendUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                EditText nameInput = findViewById(R.id.username);
-//                String username = nameInput.getText().toString();
-//                Toast usernameSubmitted = Toast.makeText(getApplicationContext(), username, Toast.LENGTH_SHORT);
-//                usernameSubmitted.show();
-//                SharedPreferences sP = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-//                SharedPreferences.Editor editor = sP.edit();
-//                editor.putString("username", username);
-//                editor.apply();
+                EditText nameInput = findViewById(R.id.username);
+                String username = nameInput.getText().toString();
+                Toast usernameSubmitted = Toast.makeText(getApplicationContext(), username, Toast.LENGTH_SHORT);
+                usernameSubmitted.show();
+                SharedPreferences sP = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = sP.edit();
+                editor.putString("username", username);
+                editor.apply();
 
                 runTaskMutation();
 
@@ -60,7 +60,7 @@ public class Setting extends AppCompatActivity {
     }
 
     public void runTaskMutation(){
-        CreateTaskInput createTaskInput = CreateTaskInput.builder().build().builder()
+        CreateTaskInput createTaskInput = CreateTaskInput.builder()
                 .title("learn how to code")
                 .body("this reminds me of mlab")
                 .build();
