@@ -14,12 +14,22 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.amazonaws.mobile.config.AWSConfiguration;
+import com.amazonaws.mobileconnectors.appsync.AWSAppSyncClient;
+
 public class MainActivity extends AppCompatActivity {
+
+    private AWSAppSyncClient awsAppSyncClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        awsAppSyncClient = AWSAppSyncClient.builder()
+                .context(getApplicationContext())
+                .awsConfiguration(new AWSConfiguration(getApplicationContext()))
+                .build();
 
 
         TextView appTitle = findViewById(R.id.textView);
