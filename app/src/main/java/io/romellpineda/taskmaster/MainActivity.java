@@ -9,27 +9,33 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.amazonaws.amplify.generated.graphql.ListTasksQuery;
 import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.appsync.AWSAppSyncClient;
+import com.amazonaws.mobileconnectors.appsync.fetcher.AppSyncResponseFetchers;
+import com.apollographql.apollo.GraphQLCall;
+import com.apollographql.apollo.api.Response;
+import com.apollographql.apollo.exception.ApolloException;
+
+import javax.annotation.Nonnull;
 
 public class MainActivity extends AppCompatActivity {
 
-//    private AWSAppSyncClient awsAppSyncClient;
+    private AWSAppSyncClient mainAwsAppSyncClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        awsAppSyncClient = AWSAppSyncClient.builder()
-//                .context(getApplicationContext())
-//                .awsConfiguration(new AWSConfiguration(getApplicationContext()))
-//                .build();
+        mainAwsAppSyncClient = AWSAppSyncClient.builder()
+                .context(getApplicationContext())
+                .awsConfiguration(new AWSConfiguration(getApplicationContext()))
+                .build();
+
+        dynamoTasksQuery();
 
 
         TextView appTitle = findViewById(R.id.textView);
@@ -82,4 +88,22 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
     }
+
+    public void dynamoTasksQuery(){
+        mainAwsAppSyncClient.query(ListTasksQuery.builder().build())
+                .responseFetcher(AppSyncResponseFetchers.CACHE_AND_NETWORK)
+                .enqueue(allTasksQueryCallback);
+    }
+
+    private GraphQLCall.Callback<ListTasksQuery.Data> allTasksQueryCallback = new GraphQLCall.Callback<ListTasksQuery.Data>() {
+        @Override
+        public void onResponse(@Nonnull Response<ListTasksQuery.Data> response) {
+            Log.i("Results", response.data().listTasks().items().toString());
+        }
+
+        @Override
+        public void onFailure(@Nonnull ApolloException e) {
+            Log.e("ERROR", e.toString());
+        }
+    };
 }
