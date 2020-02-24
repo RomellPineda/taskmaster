@@ -42,16 +42,18 @@ public class Setting extends AppCompatActivity {
         sendUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText nameInput = findViewById(R.id.username);
-                String username = nameInput.getText().toString();
-                Toast usernameSubmitted = Toast.makeText(getApplicationContext(), username, Toast.LENGTH_SHORT);
+                EditText body = findViewById(R.id.body);
+                String taskBody = body.getText().toString();
+                EditText title = findViewById(R.id.title);
+                String taskTitle = title.getText().toString();
+                Toast usernameSubmitted = Toast.makeText(getApplicationContext(), taskTitle, Toast.LENGTH_SHORT);
                 usernameSubmitted.show();
                 SharedPreferences sP = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = sP.edit();
-                editor.putString("username", username);
+                editor.putString("username", taskTitle);
                 editor.apply();
 
-                runTaskMutation();
+                runTaskMutation(taskTitle, taskBody);
 
                 Intent goBackToMain = new Intent(Setting.this, MainActivity.class);
                 Setting.this.startActivity(goBackToMain);
@@ -59,10 +61,11 @@ public class Setting extends AppCompatActivity {
         });
     }
 
-    public void runTaskMutation(){
+    public void runTaskMutation(String title, String body){
         CreateTaskInput createTaskInput = CreateTaskInput.builder()
-                .title("learn how to code")
-                .body("this reminds me of mlab")
+                .title(title)
+                .body(body)
+                .state("pending")
                 .build();
 
         awsAppSyncClient.mutate(CreateTaskMutation.builder().input(createTaskInput).build())

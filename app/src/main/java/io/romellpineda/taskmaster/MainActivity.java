@@ -19,17 +19,17 @@ import com.amazonaws.mobileconnectors.appsync.AWSAppSyncClient;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AWSAppSyncClient awsAppSyncClient;
+//    private AWSAppSyncClient awsAppSyncClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        awsAppSyncClient = AWSAppSyncClient.builder()
-                .context(getApplicationContext())
-                .awsConfiguration(new AWSConfiguration(getApplicationContext()))
-                .build();
+//        awsAppSyncClient = AWSAppSyncClient.builder()
+//                .context(getApplicationContext())
+//                .awsConfiguration(new AWSConfiguration(getApplicationContext()))
+//                .build();
 
 
         TextView appTitle = findViewById(R.id.textView);
