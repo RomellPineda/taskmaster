@@ -8,6 +8,9 @@ mutation CreateTask(
     title
     body
     state
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation UpdateTask(
@@ -19,6 +22,9 @@ mutation UpdateTask(
     title
     body
     state
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation DeleteTask(
@@ -30,5 +36,8 @@ mutation DeleteTask(
     title
     body
     state
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
