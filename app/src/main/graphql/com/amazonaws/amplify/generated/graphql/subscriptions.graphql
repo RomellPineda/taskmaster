@@ -5,6 +5,9 @@ subscription OnCreateTask {
     title
     body
     state
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 subscription OnUpdateTask {
@@ -13,6 +16,9 @@ subscription OnUpdateTask {
     title
     body
     state
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 subscription OnDeleteTask {
@@ -21,5 +27,8 @@ subscription OnDeleteTask {
     title
     body
     state
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
