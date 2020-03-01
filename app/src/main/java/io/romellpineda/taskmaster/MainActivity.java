@@ -27,19 +27,19 @@ import javax.annotation.Nonnull;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AWSAppSyncClient mainAwsAppSyncClient;
+//    private AWSAppSyncClient mainAwsAppSyncClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mainAwsAppSyncClient = AWSAppSyncClient.builder()
-                .context(getApplicationContext())
-                .awsConfiguration(new AWSConfiguration(getApplicationContext()))
-                .build();
-
-        dynamoTasksQuery();
+//        mainAwsAppSyncClient = AWSAppSyncClient.builder()
+//                .context(getApplicationContext())
+//                .awsConfiguration(new AWSConfiguration(getApplicationContext()))
+//                .build();
+//
+//        dynamoTasksQuery();
 
 
         TextView appTitle = findViewById(R.id.textView);
@@ -119,11 +119,11 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-    public void dynamoTasksQuery(){
-        mainAwsAppSyncClient.query(ListTasksQuery.builder().build())
-                .responseFetcher(AppSyncResponseFetchers.CACHE_AND_NETWORK)
-                .enqueue(allTasksQueryCallback);
-    }
+//    public void dynamoTasksQuery(){
+//        mainAwsAppSyncClient.query(ListTasksQuery.builder().build())
+//                .responseFetcher(AppSyncResponseFetchers.CACHE_AND_NETWORK)
+//                .enqueue(allTasksQueryCallback);
+//    }
 
     private GraphQLCall.Callback<ListTasksQuery.Data> allTasksQueryCallback = new GraphQLCall.Callback<ListTasksQuery.Data>() {
         @Override
