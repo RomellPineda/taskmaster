@@ -8,6 +8,7 @@ My first Andriod app! The classic task manager app in Java built with Andriod St
 > ![add task page](assets/addTask.png)
 > ![task image](assets/allTasks.png)
 > ![fragments](assets/fragments.png)
+> ![login page](assets/login.png)
  
 ## Daily Change Log
 - 2/11 Created index, add task, and all tasks page.
@@ -15,4 +16,4 @@ My first Andriod app! The classic task manager app in Java built with Andriod St
 - 2/13 Implemented recycler view and fragments for main page.
 - 2/19 Implement Room
 - 2/21 Refactor previous work and implement scalable cloud data storage
-- 2/25 Implement Coginito user login and sign up flow.
+- 2/25 Implement Coginito user login, sign up, and log out flow.
