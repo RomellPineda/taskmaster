@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.amazonaws.amplify.generated.graphql.ListTasksQuery;
 import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amazonaws.mobile.client.Callback;
+import com.amazonaws.mobile.client.SignOutOptions;
 import com.amazonaws.mobile.client.UserState;
 import com.amazonaws.mobile.client.UserStateDetails;
 import com.amazonaws.mobile.config.AWSConfiguration;
@@ -27,70 +28,37 @@ import javax.annotation.Nonnull;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AWSAppSyncClient mainAwsAppSyncClient;
+    private String TAG = " main_act ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mainAwsAppSyncClient = AWSAppSyncClient.builder()
-                .context(getApplicationContext())
-                .awsConfiguration(new AWSConfiguration(getApplicationContext()))
-                .build();
-
-        dynamoTasksQuery();
-
-
         TextView appTitle = findViewById(R.id.textView);
-        SharedPreferences sP = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String user = sP.getString("username", "My Tasks");
-        appTitle.setText(user);
+        String loggedUser = AWSMobileClient.getInstance().getUsername();
+        appTitle.setText(loggedUser);
 
-        Button addTaskPage = findViewById(R.id.button);
-        addTaskPage.setOnClickListener(new View.OnClickListener() {
+        Button signout = findViewById(R.id.signout);
+        signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToAddTaskPage = new Intent(MainActivity.this, AddActivity.class);
-                MainActivity.this.startActivity(goToAddTaskPage);
+                AWSMobileClient.getInstance().signOut(SignOutOptions.builder().signOutGlobally(true).build(), new Callback<Void>() {
+                    @Override
+                    public void onResult(final Void result) {
+                        Log.d(TAG, "signed-out");
+                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                        MainActivity.this.startActivity(intent);
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Log.e(TAG, "sign-out error", e);
+                    }
+                });
             }
         });
 
-        Button allTasksPage = findViewById(R.id.button2);
-        allTasksPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goToAllTasksPage = new Intent(MainActivity.this, AllTasks.class);
-                MainActivity.this.startActivity(goToAllTasksPage);
-            }
-        });
-
-        Button settingsPage =  findViewById(R.id.settingsButton);
-        settingsPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goToSetting = new Intent(MainActivity.this, Setting.class);
-                MainActivity.this.startActivity(goToSetting);
-            }
-        });
-
-//        Archive pre-Recycler
-//        final RadioGroup taskGroup = findViewById(R.id.taskGroup);
-//        taskGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//
-//            @Override
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                String waffle = ((RadioButton)findViewById(taskGroup.getCheckedRadioButtonId())).getText().toString();
-//
-//                SharedPreferences sP = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-//                SharedPreferences.Editor editor = sP.edit();
-//                editor.putString("task", waffle);
-//                editor.apply();
-//
-//                Intent goToDetailPage = new Intent(MainActivity.this, Detail.class);
-//                MainActivity.this.startActivity(goToDetailPage);
-//            }
-//        });
         AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback<UserStateDetails>() {
 
                     @Override
@@ -118,22 +86,4 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
     }
-
-    public void dynamoTasksQuery(){
-        mainAwsAppSyncClient.query(ListTasksQuery.builder().build())
-                .responseFetcher(AppSyncResponseFetchers.CACHE_AND_NETWORK)
-                .enqueue(allTasksQueryCallback);
-    }
-
-    private GraphQLCall.Callback<ListTasksQuery.Data> allTasksQueryCallback = new GraphQLCall.Callback<ListTasksQuery.Data>() {
-        @Override
-        public void onResponse(@Nonnull Response<ListTasksQuery.Data> response) {
-            Log.i("Results", response.data().listTasks().items().toString());
-        }
-
-        @Override
-        public void onFailure(@Nonnull ApolloException e) {
-            Log.e("ERROR", e.toString());
-        }
-    };
 }
