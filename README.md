@@ -18,4 +18,5 @@ My first Andriod app! The classic task manager app in Java built with Andriod St
 - 2/19 Implement Room
 - 2/21 Refactor previous work and implement scalable cloud data storage
 - 2/25 Implement Coginito user login, sign up, and log out flow.
+- 3/2 Add s3 storage
 - 3/2 Add notifications.
