@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
-// notificationId is a unique int for each notification that you must define
+        // notificationId is a unique int for each notification that you must define
         notificationManager.notify((int) (Math.random() * 100), builder.build());
 
         TextView appTitle = findViewById(R.id.textView);
@@ -131,6 +131,15 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        Button addTaskPage = findViewById(R.id.goToAddTaskButton);
+        addTaskPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToAddTaskPage = new Intent(MainActivity.this, AddActivity.class);
+                MainActivity.this.startActivity(goToAddTaskPage);
+            }
+        });
     }
 
     public void uploadWithTransferUtility() {
