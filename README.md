@@ -1,7 +1,7 @@
 # Task App
 
 ## Description
-My first Andriod app! The classic task manager app in Java built with Andriod Studio.  Allows users to set and save a username, add task titles along with a description.  Early version utilizes grouped radio buttons with hardcoded tasks.  Upon click of individual task, the user is taken to a detail page with task information displayed.  Second iteration implements a RecyclerView in addition to fragments.  Implements Room data storage.  Later versions implement cloud data storage using Amplify to generate boilerplate code.  Users are able to sign up or login to the application using Cognito.  Features notifications drop down.
+My first Andriod app! The classic task manager app in Java built with Andriod Studio.  Allows users to set and save a username, add task titles along with a description.  Early version utilizes grouped radio buttons with hardcoded tasks.  Upon click of individual task, the user is taken to a detail page with task information displayed.  Second iteration implements a RecyclerView in addition to fragments.  Implements Room data storage.  Later versions implement cloud data storage using Amplify to generate boilerplate code.  Users are able to sign up or login to the application using Cognito.  Features notifications drop down.  Intent filters allow users to share a photo from another with the capability to upload the photo.
 
 ## Screen Shots
 > ![landing page](assets/main.png)
@@ -20,3 +20,4 @@ My first Andriod app! The classic task manager app in Java built with Andriod St
 - 2/25 Implement Coginito user login, sign up, and log out flow.
 - 3/2 Add s3 storage
 - 3/2 Add notifications.
+- 3/3 Implement feature that allows user to share a photo from another with the capability to upload the photo.
